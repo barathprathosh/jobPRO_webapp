@@ -1,0 +1,737 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="{% static 'img/fav.png' %}">
+  <!-- Author Meta -->
+  <meta name="author" content="codepixer">
+  <!-- Meta Description -->
+  <meta name="description" content="">
+  <!-- Meta Keyword -->
+  <meta name="keywords" content="">
+  <!-- meta character set -->
+  <meta charset="UTF-8">
+  <!-- Site Title -->
+  <title>MyjobPRO</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+  <!--
+			CSS
+			============================================= -->
+  <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+
+
+
+
+  <!-- start banner Area -->
+  <section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+      <div class="row fullscreen d-flex align-items-center justify-content-center">
+        <div class="banner-content col-lg-12">
+          <h1 class="text-white">
+            <span>1500+</span> Jobs posted last week
+          </h1>
+          <form action="{% url 'search_result' %}" method="get" class="serach-form-area"></form>
+          <div class="row justify-content-center form-wrap">
+            <div class="col-lg-4 form-cols">
+              <input type="text" class="form-control" name="job_title_or_company_name" placeholder="Search Job title">
+            </div>
+            <div class="col-lg-3 form-cols">
+              <div class="default-select" id="default-selects"">
+											<select>
+												<option value=" 1">Select area</option>
+                <option value="2">Dhaka</option>
+                <option value="3">Rajshahi</option>
+                <option value="4">Barishal</option>
+                <option value="5">Noakhali</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3 form-cols">
+              <div class="default-select" id="default-selects2">
+                <select>
+                  <option value="1">Select Industry</option>
+                  <option value="Accounting / Finance">Accounting / Finance</option>
+                  <option value="Advertising / PR / MR / Event Management">Advertising / PR / MR / Event Management
+                  </option>
+                  <option value="Agriculture / Dairy">Agriculture / Dairy</option>
+                  <option value="Animation / Gaming">Animation / Gaming</option>
+                  <option value="Architecture / Interior Design">Architecture / Interior Design</option>
+                  <option value="Automobile / Auto Anciliary / Auto Components">Automobile / Auto Anciliary / Auto
+                    Components</option>
+                  <option value="Aviation / Aerospace Firms">Aviation / Aerospace Firms</option>
+                  <option value="Banking / Financial Services / Broking">Banking / Financial Services / Broking</option>
+                  <option value="BPO / Call Centre / ITES">BPO / Call Centre / ITES</option>
+                  <option value="Brewery / Distillery">Brewery / Distillery</option>
+                  <option value="Broadcasting">Broadcasting</option>
+                  <option value="Ceramics / Sanitary ware">Ceramics / Sanitary ware</option>
+                  <option value="Chemicals / PetroChemical / Plastic / Rubber">Chemicals / PetroChemical / Plastic /
+                    Rubber</option>job_title_or_company_name
+                  <option value="Construction / Engineering / Cement / Metals">Construction / Engineering / Cement /
+                    Metals</option>
+                  <option value="Consumer Electronics / Appliances / Durables">Consumer Electronics / Appliances /
+                    Durables</option>
+                  <option value="Courier / Transportation / Freight / Warehousing">Courier / Transportation / Freight /
+                    Warehousing</option>
+                  <option value="Education / Teaching / Training">Education / Teaching / Training</option>
+                  <option value="Electricals / Switchgears">Electricals / Switchgears</option>
+                  <option value="Export / Import">Export / Import</option>
+                  <option value="Facility Management">Facility Management</option>
+                  <option value="Fertilizers / Pesticides">Fertilizers / Pesticides</option>
+                  <option value="FMCG / Foods / Beverage">FMCG / Foods / Beverage</option>
+                  <option value="Food Processing">Food Processing</option>
+                  <option value="Fresher / Trainee / Entry Level">Fresher / Trainee / Entry Level</option>
+                  <option value="Gems / Jewellery">Gems / Jewellery</option>
+                  <option value="Glass / Glassware">Glass / Glassware</option>
+                  <option value="Government / Defence">Government / Defence</option>
+                  <option value="Heat Ventilation / Air Conditioning">Heat Ventilation / Air Conditioning</option>
+                  <option value="Travel / Hotels / Restaurants / Airlines / Railways">Travel / Hotels / Restaurants /
+                    Airlines / Railways</option>
+                  <option value="Industrial Products / Heavy Machinery">Industrial Products / Heavy Machinery</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="Internet / Ecommerce">Internet / Ecommerce</option>
+                  <option value="Iron and Steel">Iron and Steel</option>
+                  <option value="IT-Hardware & Networking">IT-Hardware & Networking</option>
+                  <option value="IT-Software / Software Services">IT-Software / Software Services</option>
+                  <option value="KPO / Research / Analytics">KPO / Research / Analytics</option>
+                  <option value="Leather">Leather</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Media / Entertainment / Internet">Media / Entertainment / Internet</option>
+                  <option value="Medical Devices / Equipments">Medical Devices / Equipments</option>
+                  <option value="Medical / Healthcare / Hospitals">Medical / Healthcare / Hospitals</option>
+                  <option value="Mining / Quarrying">Mining / Quarrying</option>
+                  <option value="NGO / Social Services / Regulators / Industry Associations">NGO / Social Services /
+                    Regulators / Industry Associations</option>
+                  <option value="Office Equipment / Automation">Office Equipment / Automation</option>
+                  <option value="Oil and Gas / Energy / Power / Infrastructure">Oil and Gas / Energy / Power /
+                    Infrastructure</option>
+                  <option value="Pharma / Biotech / Clinical Research">Pharma / Biotech / Clinical Research</option>
+                  <option value="Printing / Packaging">Printing / Packaging</option>
+                  <option value="Publishing">Publishing</option>
+                  <option value="Pulp and Paper">Pulp and Paper</option>
+                  <option value="Real Estate / Property">Real Estate / Property</option>
+                  <option value="Recruitment / Staffing">Recruitment / Staffing</option>
+                  <option value="Retail / Wholesale">Retail / Wholesale</option>
+                  <option value="Security / Law Enforcement">Security / Law Enforcement</option>
+                  <option value="Semiconductors / Electronics">Semiconductors / Electronics</option>
+                  <option value="Shipping / Marine">Shipping / Marine</option>
+                  <option value="Strategy / Management Consulting Firms">Strategy / Management Consulting Firms</option>
+                  <option value="Sugar">Sugar</option>
+                  <option value="Telecom/ISP">Telecom/ISP</option>
+                  <option value="Textiles / Garments / Accessories">Textiles / Garments / Accessories</option>
+                  <option value="Tyres">Tyres</option>
+                  <option value="Water Treatment / Waste Management">Water Treatment / Waste Management</option>
+                  <option value="others">Others </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2 form-cols">
+              <button type="submit" class="btn btn-info">
+                <span class="lnr lnr-magnifier"></span> Search
+              </button>
+            </div>
+          </div>
+          </form>
+          <p class="text-white"> <span>Search by tags:</span> Tecnology, Business, Consulting, IT Company, Design,
+            Development</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End banner Area -->
+
+  <!-- Start features Area -->
+  <section class="features-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="single-feature">
+            <h4>Searching</h4>
+            <p>
+              Home of your dream job with<br> 1500+ jobs
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="single-feature">
+            <h4>Applying</h4>
+            <p>
+              Apply for your dream <br>Job
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="single-feature">
+            <h4>Security</h4>
+            <p>
+              We assure your data is <br>100% secured
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="single-feature">
+            <h4>Notifications</h4>
+            <p>
+              Get notified about new requirements
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End features Area -->
+
+  <!-- Start popular-post Area -->
+  <section class="popular-post-area pt-100">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="active-popular-post-carusel">
+          <div class="single-popular-post d-flex flex-row">
+            <div class="thumb">
+              <img class="img-fluid" src="{% static 'img/p1.png' %}" alt="">
+              <a class="btns text-uppercase" href="#">view job post</a>
+            </div>
+            <div class="details">
+              <a href="#">
+                <h4>Java Developer</h4>
+              </a>
+              <h6>Chennai</h6>
+              <p>
+              <ul>
+                <li>
+                  UAE based Company
+                </li>
+                <li>
+                  Java, J2EE
+                  CI/CD (GIT, Jenkin, Maven)
+                  Spring MVC
+                  Spring Rest
+                  Angular 9, Type Script
+                  Boot Strap
+                </li>
+              </ul>
+              </p>
+            </div>
+          </div>
+          <div class="single-popular-post d-flex flex-row">
+            <div class="thumb">
+              <img src="{% static 'img/p2.png' %}" alt="">
+              <a class="btns text-uppercase" href="#">view job post</a>
+            </div>
+            <div class="details">
+              <a href="#">
+                <h4>Workshop Maintenance</h4>
+              </a>
+              <h6>Kuwait</h6>
+              <p>
+              <ul>
+                <li>
+                  Diploma in Mechanical Engineering
+                </li>
+                <li>
+                  Minimum 20 years’ experience in piling rig machines maintenance as (BG20, BG36, BG40, LB36, Delmag…..)
+                </li>
+              </ul>
+              </p>
+            </div>
+          </div>
+          <div class="single-popular-post d-flex flex-row">
+            <div class="thumb">
+              <img src="{% static 'img/p1.png' %}" alt="">
+              <a class="btns text-uppercase" href="#">view job post</a>
+            </div>
+            <div class="details">
+              <a href="#">
+                <h4>QC INSPECTOR</h4>
+              </a>
+              <h6>Oman</h6>
+              <p>
+              <ul>
+                <li>
+                  Have worked on Steel Storage Tank in Oil&Gas and Water projects. Expose to welding and familiar with
+                  CQP, QCP, WPS & ASME Sec.
+                </li>
+              </ul>
+              </p>
+            </div>
+          </div>
+          <div class="single-popular-post d-flex flex-row">
+            <div class="thumb">
+              <img src="{% static 'img/p2.png' %}" alt="">
+              <a class="btns text-uppercase" href="#">view job post</a>
+            </div>
+            <div class="details">
+              <a href="#">
+                <h4>Workshop Maintenance</h4>
+              </a>
+              <h6>Kuwait</h6>
+              <p>
+              <ul>
+                <li>
+                  Diploma in Mechanical Engineering
+                </li>
+                <li>
+                  Minimum 20 years’ experience in piling rig machines maintenance as (BG20, BG36, BG40, LB36, Delmag…..)
+                </li>
+              </ul>
+              </p>
+            </div>
+          </div>
+          <div class="single-popular-post d-flex flex-row">
+            <div class="thumb">
+              <img src="{% static 'img/p1.png' %}" alt="">
+              <a class="btns text-uppercase" href="#">view job post</a>
+            </div>
+            <div class="details">
+              <a href="#">
+                <h4>Female Nurse</h4>
+              </a>
+              <h6>Bahrain</h6>
+              <p>
+                As per attachment, Food, only duty meal provided, 9 hrs duty (Including one hour break)
+              </p>
+            </div>
+          </div>
+          <div class="single-popular-post d-flex flex-row">
+            <div class="thumb">
+              <img src="{% static 'img/p2.png' %}" alt="">
+              <a class="btns text-uppercase" href="#">view job post</a>
+            </div>
+            <div class="details">
+              <a href="#">
+                <h4>Workshop Maintenance</h4>
+              </a>
+              <h6>Kuwait</h6>
+              <p>
+              <ul>
+                <li>
+                  Diploma in Mechanical Engineering
+                </li>
+                <li>
+                  Minimum 20 years’ experience in piling rig machines maintenance as (BG20, BG36, BG40, LB36, Delmag…..)
+                </li>
+              </ul>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End popular-post Area -->
+
+  <!-- Start feature-cat Area -->
+  <section class="feature-cat-area pt-100" id="category">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="menu-content pb-60 col-lg-10">
+          <div class="title text-center">
+            <h1 class="mb-10">Featured Job Categories</h1>
+            <p>Who are in extremely love with eco friendly system.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="single-fcat">
+            <a href="category.html">
+              <img src="{% static 'img/o1.png' %}" alt="">
+            </a>
+            <p>Accounting</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="single-fcat">
+            <a href="category.html">
+              <img src="{% static 'img/o2.png' %}" alt="">
+            </a>
+            <p>Development</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="single-fcat">
+            <a href="category.html">
+              <img src="{% static 'img/o3.png' %}" alt="">
+            </a>
+            <p>Technology</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="single-fcat">
+            <a href="category.html">
+              <img src="{% static 'img/o4.png' %}" alt="">
+            </a>
+            <p>Media & News</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="single-fcat">
+            <a href="category.html">
+              <img src="{% static 'img/o5.png' %}" alt="">
+            </a>
+            <p>Medical</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="single-fcat">
+            <a href="category.html">
+              <img src="{% static 'img/o6.png' %}" alt="">
+            </a>
+            <p>Goverment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End feature-cat Area -->
+
+  <!-- Start post Area -->
+
+  <section class="post-area section-gap">
+    <div class="container">
+      <div class="row justify-content-center d-flex">
+        <div class="col-lg-8 post-list">
+          <ul class="cat-list">
+            <li><a href="#">Recent</a></li>
+            <li><a href="#">Full Time</a></li>
+            <li><a href="#">Intern</a></li>
+            <li><a href="#">part Time</a></li>
+          </ul>
+          {% for job in jobs %}
+          <div class="single-post d-flex flex-row">
+            <div class="thumb">
+              <img src="{% static 'img/post.png' %}" alt="">
+              <!-- <ul class="tags">
+                <li>
+                  <a href="#">Art</a>
+                </li>
+                <li>
+                  <a href="#">Media</a>
+                </li>
+                <li>
+                  <a href="#">Design</a>
+                </li>
+              </ul> -->
+            </div>
+            &emsp;
+            <div class="details">
+              <div class="title">
+                <div class="titles ">
+                  <a href="">
+                    <h4>{{job.title}}</h4>
+                  </a>
+                  <h6>{{job.customer}}</h6>
+                  <p>
+                    Location : {{job.country}}<br>
+                    vacancies : {{job.vacancies}} <br>
+                  </p>
+                  <p>Job Nature: Full time</p>
+                  <!-- <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p> -->
+                  <p class="address"><span class="lnr lnr-database"></span> 25k - 35k</p>
+                </div>
+              </div>
+            </div>
+            <ul class="ml-auto btns">
+              <!-- <li><a href="#"><span class="lnr lnr-heart"></span></a></li> -->
+              <li><a href="{% url 'job_detail' job.id %}">Apply</a></li>
+            </ul>
+          </div>
+          {% endfor %}
+          <div class="container mt-2 d-flex ">
+            <div class="column is-10">
+              {% if jobs.has_previous %}
+              <a class="text-uppercase loadmore-btn  d-block"
+                href="{% url 'frontpage' %}?page={{jobs.previous_page_number}}"><i class="fa fa-chevron-left"></i>
+                Previous Page</a>
+              {% endif %}
+              {% if jobs.has_next %}
+              <a class="text-uppercase loadmore-btn d-block"
+                href="{% url 'frontpage' %}?page={{jobs.next_page_number}}">
+                <i class="fa fa-chevron-right"></i>Next Pages</a>
+              {% endif %}
+            </div>
+          </div>
+
+          <a class="text-uppercase loadmore-btn mx-auto d-block" href="category.html">Load More job Posts</a>
+
+        </div>
+        <div class="col-lg-4 sidebar">
+          <div class="single-slidebar">
+            <h4>Jobs by Location</h4>
+            <ul class="cat-list">
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>New York</p><span>37</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Park Montana</p><span>57</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Atlanta</p><span>33</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Arizona</p><span>36</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Florida</p><span>47</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Rocky Beach</p><span>27</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Chicago</p><span>17</span>
+                </a></li>
+            </ul>
+          </div>
+
+          <div class="single-slidebar">
+            <h4>Top rated job posts</h4>
+            <div class="active-relatedjob-carusel">
+              <div class="single-rated">
+                <img class="img-fluid" src="{% static 'img/r1.jpg' %}" alt="">
+                <a href="single.html">
+                  <h4>Workshop Maintenance</h4>
+                </a>
+                <h6>Kuwait</h6>
+                <p>
+                <ul>
+                  <li>
+                    Diploma in Mechanical Engineering
+                  </li>
+                  <li>
+                    Minimum 20 years’ experience in piling rig machines maintenance as (BG20, BG36, BG40, LB36,
+                    Delmag…..)
+                  </li>
+                </ul>
+                </p>
+                <h5>Job Nature: Full time</h5>
+                <!-- <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p> -->
+                <p class="address"><span class="lnr lnr-database"></span> 45k - 60k</p>
+                <a href="#" class="btns text-uppercase">Apply job</a>
+              </div>
+              <div class="single-rated">
+                <img class="img-fluid" src="{% static 'img/r1.jpg' %}" alt="">
+                <a href="single.html">
+                  <h4>Female Nurse</h4>
+                </a>
+                <h6>Bahrain</h6>
+                <p>
+                  As per attachment, Food, only duty meal provided, 9 hrs duty (Including one hour break)
+                </p>
+                <h5>Job Nature: Full time</h5>
+                <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p>
+                <p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+                <a href="#" class="btns text-uppercase">Apply job</a>
+              </div>
+              <div class="single-rated">
+                <img class="img-fluid" src="{% static 'img/r1.jpg' %}" alt="">
+                <a href="single.html">
+                  <h4>QC INSPECTOR</h4>
+                </a>
+                <h6>Oman</h6>
+                <p>
+                  Have worked on Steel Storage Tank in Oil&Gas and Water projects. Expose to welding and familiar with
+                  CQP, QCP, WPS & ASME Sec.
+
+                </p>
+                <h5>Job Nature: Full time</h5>
+                <!-- <p class="address"><span class="lnr lnr-map"></span> 5, Panthapath Dhanmondi Dhaka</p> -->
+                <p class="address"><span class="lnr lnr-database"></span> 10k - 25k</p>
+                <a href="#" class="btns text-uppercase">Apply job</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="single-slidebar">
+            <h4>Jobs by Category</h4>
+            <ul class="cat-list">
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Technology</p><span>37</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Media & News</p><span>57</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Goverment</p><span>33</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Medical</p><span>36</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Restaurants</p><span>47</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Developer</p><span>27</span>
+                </a></li>
+              <li><a class="justify-content-between d-flex" href="category.html">
+                  <p>Accounting</p><span>17</span>
+                </a></li>
+            </ul>
+          </div>
+
+          <div class="single-slidebar">
+            <h4>Carrer Advice Blog</h4>
+            <div class="blog-list">
+              <div class="single-blog " style="background:#000 url(img/blog1.jpg);">
+                <a href="single.html">
+                  <h4>Home Audio Recording <br>
+                    For Everyone</h4>
+                </a>
+                <div class="meta justify-content-between d-flex">
+                  <p>
+                    02 Hours ago
+                  </p>
+                  <p>
+                    <span class="lnr lnr-heart"></span>
+                    06
+                    <span class="lnr lnr-bubble"></span>
+                    02
+                  </p>
+                </div>
+              </div>
+              <div class="single-blog " style="background:#000 url(img/blog2.jpg);">
+                <a href="single.html">
+                  <h4>Home Audio Recording <br>
+                    For Everyone</h4>
+                </a>
+                <div class="meta justify-content-between d-flex">
+                  <p>
+                    02 Hours ago
+                  </p>
+                  <p>
+                    <span class="lnr lnr-heart"></span>
+                    06
+                    <span class="lnr lnr-bubble"></span>
+                    02
+                  </p>
+                </div>
+              </div>
+              <div class="single-blog " style="background:#000 url(img/blog1.jpg);">
+                <a href="single.html">
+                  <h4>Home Audio Recording <br>
+                    For Everyone</h4>
+                </a>
+                <div class="meta justify-content-between d-flex">
+                  <p>
+                    02 Hours ago
+                  </p>
+                  <p>
+                    <span class="lnr lnr-heart"></span>
+                    06
+                    <span class="lnr lnr-bubble"></span>
+                    02
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End post Area -->
+
+
+  <!-- Start callto-action Area -->
+  <!-- <section class="callto-action-area section-gap" id="join">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="menu-content col-lg-9">
+          <div class="title text-center">
+            <h1 class="mb-10 text-white">Join us today without any hesitation</h1>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+            <a class="primary-btn" href="#">I am a Candidate</a>
+            <a class="primary-btn" href="#">Request Free Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- End calto-action Area -->
+
+  <!-- Start download Area -->
+  <section class="download-area section-gap" id="app">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 download-left">
+          <img class="img-fluid" src="{% static 'img/d1.png' %}" alt="">
+        </div>
+        <div class="col-lg-6 download-right">
+          <h1>Download <br>
+            MyjobPRO App Today!</h1>
+          <p class="subs">
+            This is exclusive job app where you can search for job vacancies related to your qualification / experience.
+            You can post your CV's for future vacancies. View & apply 1000+ job vacancies of TeamPRO.
+          </p>
+          <div class="d-flex flex-row">
+            <div class="buttons">
+              <i class="fa fa-apple" aria-hidden="true"></i><br>
+              <div class="desc">
+                <a href="#">
+                  <p>
+                    <span>Available</span> <br>
+                    on App Store
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div class="buttons">
+              <i class="fa fa-android" aria-hidden="true"></i>
+              <div class="desc">
+                <a href="#">
+                  <p>
+                    <span>Available</span> <br>
+                    on Play Store
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End download Area -->
+
+
+  <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+  <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' %}"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+  <script type="text/javascript"
+    src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"' %}></script>
+  			<script src="{% static ' js/easing.min.js' %}"></script>
+  <script src="{% static 'js/hoverIntent.js' %}"></script>
+  <script src="{% static 'js/superfish.min.js' %}"></script>
+  <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.sticky.js' %}"></script>
+  <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'js/parallax.min.js' %}"></script>
+  <script src="{% static 'js/mail-script.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
+
+<div class="container">
+  <!-- <div class="row first-info" style="background-image: url({% static 'img/bg.jpg' %})" ></div> -->
+  <div class="row align-items-center justify-content-center">
+    <div class="col-md-12">
+      <div class="mb-5 text-center">
+        <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
+        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur
+          perferendis.</p>
+      </div>
+    </div>
+  </div>
+  <section class="search-banner text-white" id="search-banner"></section>
+  <div class="container py-5 my-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-bg acik-renk-form">
+          <div class="card-body">
+            <form action="{% url 'search_result' %}" method="get">
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <input type="text" name="job_title_or_company_name" class="form-control form-control-lg"
+                    placeholder="Job title, Company...">
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <input type="text" name="territory" class="form-control form-control-lg" placeholder="Country">
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <input type="text" name="industry" class="form-control form-control-lg" placeholder="Industry">
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <button type="submit" class="search-btn btn-lg btn-block text-white btn-search">Search Job</button>
+                </div>
+                <!-- <div class="col-md-4">
+                                    <div class="form-group ">
+                                        <select id="ilceler" class="form-control" >
+                                            <option selected>Tüm İlçeler</option>
+                                            <option>BMW</option>
+                                            <option>Audi</option>
+                                            <option>Maruti</option>
+                                            <option>Tesla</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </section>
+  <div class="bg-sec">
+    <br>
+    <h2 class="subtitle has-text-centered">Newest Jobs</h2>
+    {% for job in jobs %}
+    <div class="container mt-2 d-flex ">
+      <div class="column is-10">
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <div class="d-flex justify-content-between mt-2 align-items-center">
+                  <div class="d-flex flex-row">
+                    <div class="d-flex flex-column ml-1 about">
+                      <h3><b>{{job.title}}</b></h3>
+                      <small>{{job.customer}}</small>
+                      <span class="fa fa-map-marker"> {{job.territory}}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div class="d-flex flex-column ml-1 about">
+                      <div id="outer">
+                        <button class="btn btn-primary">View</button>
+                        <button class="btn btn-success">Apply</button>
+                        <button class="btn btn-info">Refer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="column is-9">
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{ job.title}}</p>
+            <p class="subtitle is-6">{{ job.customer }}</p>
+          </div>
+          <div class="media-content">
+            Location : {{job.territory}}
+          </div>
+          <div class="media-content">
+            <a href="{% url 'job_detail' job.id %}">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+    {% endfor %}
+    <div class="container mt-2 d-flex ">
+      <div class="column is-10">
+        {% if jobs.has_previous %}
+        <a href="{% url 'frontpage' %}?page={{jobs.previous_page_number}}"><button class="btn btn-primary"><i
+              class="fa fa-chevron-left"></i> Previous Page</button></a>
+        {% endif %}
+        {% if jobs.has_next %}
+        <a href="{% url 'frontpage' %}?page={{jobs.next_page_number}}"><button class="btn btn-primary">Next Page <i
+              class="fa fa-chevron-right"></i></button></a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+<style>
+  .firma-ara {
+    padding-bottom: 100px;
+    padding-top: 100px;
+  }
+
+  .section {
+    background-image: url("https://cdn.filepicker.io/api/file/1WxRtkAQG5h70aoPQdGA/convert?format=jpeg&quality=50");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .acik-renk-form {
+    background: rgba(255, 255, 255, 0.58);
+  }
+
+  .siyah-cerceve {
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+
+  section {
+    background-color: whitesmoke;
+  }
+
+  .search-btn {
+    background-color: deepskyblue;
+  }
+
+  .bg-sec {
+    background-color: whitesmoke;
+  }
+
+  .card1 {
+    border-radius: 5px;
+    width: 300px;
+    border: none
+  }
+
+  .search-bg {
+    border-radius: 5px;
+    border: none
+  }
+
+  .about {
+    line-height: 30px
+  }
+
+  .follow {
+    height: 31px;
+    border-radius: 22px
+  }
+
+  .card {
+    background: linear-gradient(150deg, #f0f9f8, #a7ecf7 100%);
+  }
+</style>
+
+{% endblock %}

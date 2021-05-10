@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- HOME -->
+<section id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Search Result</h1>
+        <div class="custom-breadcrumbs">
+          <span class="text-white"><strong>Search Result</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section services-section bg-light block__62849" id="next-section">
+  <div class="container">
+    {% for job in page_obj %}
+    <div class="column is-9">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{ job.title}}</p>
+              <p class="subtitle is-6">{{ job.customer }}</p>
+            </div>
+            <div class="media-content">
+              Location : {{job.territory}}
+            </div>
+            <div class="media-content">
+              <a href="{% url 'job_detail' job.id %}">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+  </div>
+</section>
+
+{% endblock content %}
