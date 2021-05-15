@@ -1,7 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate,  login, logout
+from django.contrib.auth.models import User 
 from django.core.paginator import Paginator, EmptyPage
+from django.contrib import messages
+# from blog.models import Post
 
 from apps.job.models import Job
 # from apps.userprofile.models import Userprofile
@@ -29,31 +32,6 @@ def frontpage(request):
         # job_created = "https://myjobpro.teamproit.com/api/resource/Position/%s"%j["name"]
         # response = requests.request("PUT", job_created,body = {"web":1})
     return render(request, 'core/frontpage.html',{'jobs': page})
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-
-        if form.is_valid():
-            user = form.save()
-
-            account_type = request.POST.get('account_type', 'jobseeker')
-            username = request.POST.get('username')
-
-            # if account_type == 'employer':
-            #     userprofile = Userprofile.objects.create(user=user,username=username,is_employer=True)
-            #     user.userprofile.save()
-            # else:
-            #     userprofile = Userprofile.objects.create(user=user,username=username)
-            #     user.userprofile.save()
-
-            login(request,user)
-
-            return redirect('frontpage')
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'core/signup.html',{'form':form})
 
 def search_result_view(request):
     """
@@ -83,3 +61,61 @@ def search_result_view(request):
     }
     # return render(request, 'job/result.html', context)
     return render(request, 'core/frontpage.html',{'jobs': job_list})
+
+def handleSignUp(request):
+    if request.method=="POST":
+        # Get the post parameters
+        username=request.POST['username']
+        email=request.POST['email']
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        pass1=request.POST['pass1']
+        pass2=request.POST['pass2']
+
+        # check for errorneous input
+        if len(username)<10:
+            messages.error(request, " Your user name must be under 10 characters")
+            return redirect('frontpage')
+
+        if not username.isalnum():
+            messages.error(request, " User name should only contain letters and numbers")
+            return redirect('frontpage')
+        if (pass1!= pass2):
+             messages.error(request, " Passwords do not match")
+             return redirect('frontpage')
+        
+        # Create the user
+        myuser = User.objects.create_user(username, email, pass1)
+        myuser.first_name= fname
+        myuser.last_name= lname
+        myuser.save()
+        messages.success(request, " Your Job Portal has been successfully created")
+        return redirect('frontpage')
+
+    else:
+        return HttpResponse("404 - Not found")
+
+
+def handeLogin(request):
+    if request.method=="POST":
+        # Get the post parameters
+        loginusername=request.POST['loginusername']
+        loginpassword=request.POST['loginpassword']
+
+        user=authenticate(username= loginusername, password= loginpassword)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully Logged In")
+            return redirect("frontpage")
+        else:
+            messages.error(request, "Invalid credentials! Please try again")
+            return redirect("frontpage")
+
+    return HttpResponse("404- Not found")
+
+    return HttpResponse("login")
+
+def handelLogout(request):
+    logout(request)
+    messages.success(request, "Successfully logged out")
+    return redirect('frontpage')
