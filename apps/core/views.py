@@ -1,11 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate,  login, logout
-from django.contrib.auth.models import User 
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib import messages
 # from blog.models import Post
-
 from apps.job.models import Job
 # from apps.userprofile.models import Userprofile
 
@@ -21,16 +20,16 @@ def frontpage(request):
         page = p.page(page_no)
     except EmptyPage:
         page = p.page(1)
-    # jobs_url = "https://myjobpro.teamproit.com/api/resource/Position?fields=[%22name%22,%22subject%22,%22status%22,%22country%22,%22min_exp%22,%22max_exp%22,%22salary_currency%22,%22salary_range%22,%22qualification%22]&&filters=[[%22status%22,%22=%22,%22Active%22],[%22web%22,%22=%22,%220%22]]&&limit_page_length=5000"
-    # response = requests.request("GET", jobs_url)
-    # byte_str = response.content
-    # dict_str = byte_str.decode("UTF-8")
-    # job_response = json.loads(dict_str)
-    # for j in job_response["data"]:
-    #     a = Job(title =j["subject"],task_id = j["name"],territory = j["country"], status = j["status"], min_exp = j["min_exp"], max_exp = j["max_exp"],created_by = request.user)
-    #     a.save()
-        # job_created = "https://myjobpro.teamproit.com/api/resource/Position/%s"%j["name"]
-        # response = requests.request("PUT", job_created,body = {"web":1})
+    jobs_url = "https://myjobpro.teamproit.com/api/resource/Position?fields=[%22name%22,%22subject%22,%22status%22,%22country%22,%22min_exp%22,%22max_exp%22,%22salary_currency%22,%22salary_range%22,%22qualification%22]&&filters=[[%22status%22,%22=%22,%22Active%22],[%22web%22,%22=%22,%220%22]]&&limit_page_length=5000"
+    response = requests.request("GET", jobs_url)
+    byte_str = response.content
+    dict_str = byte_str.decode("UTF-8")
+    job_response = json.loads(dict_str)
+    for j in job_response["data"]:
+        a = Job(title =j["subject"],task_id = j["name"],territory = j["country"], status = j["status"], min_exp = j["min_exp"], max_exp = j["max_exp"],created_by = request.user)
+        a.save()
+        job_created = "https://myjobpro.teamproit.com/api/resource/Position/%s"%j["name"]
+        response = requests.request("PUT", job_created,body = {"web":1})
     return render(request, 'core/frontpage.html',{'jobs': page})
 
 def search_result_view(request):
@@ -114,6 +113,28 @@ def handeLogin(request):
     return HttpResponse("404- Not found")
 
     return HttpResponse("login")
+
+# def handeRefer(request):
+#     if request.method=="POST":
+#         # Get the post parameters
+#         jobid=request.POST['jobid']
+#         fullname=request.POST['fullname']
+#         email=request.POST['email']
+#         mobile=request.POST['mobile']
+
+#         if len(mobile)>=10:
+#             messages.error(request, " Your Mobile No. must be 10 digits")
+#             return redirect('frontpage')
+
+#         # refer to friends
+#         referjob = Refer.objects
+#         referjob.first_name= fname
+#         referjob.mobile= mobile
+#         referjob.email= email
+#         referjob.save()
+#         return redirect('frontpage')
+
+#     return HttpResponse("404- Not found")
 
 def handelLogout(request):
     logout(request)

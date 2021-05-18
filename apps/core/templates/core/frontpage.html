@@ -452,9 +452,53 @@
             <ul class="ml-auto btns">
               <!-- <li><a href="#"><span class="lnr lnr-heart"></span></a></li> -->
               <li><a href="{% url 'job_detail' job.id %}">Apply</a></li>
-              <li><a href="{% url 'job_detail' job.id %}">Refer</a></li>
+              <button type="button" data-toggle="modal" data-target="#referModal">
+                <li><a>Refer</a></li>
+              </button>
+
+
+              <!--refer model-->
+              <div class="modal fade" id="referModal" tabindex="-1" aria-labelledby="referModal" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="referModalTitle">Refer to Friends</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/refer" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                          <label for="jobid">Job ID</label>
+                          <input type="text" class="form-control" id="jobid" name="jobid" value={{job.id}} required>
+                        </div>
+                        <div class="form-group">
+                          <label for="fullname">Full Name</label>
+                          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Full Name"
+                            required>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input type="email" class="form-control" id="email" name="email"
+                            placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="mobile">Mobile No.</label>
+                          <input type="number" class="form-control" id="mobile" name="mobile"
+                            placeholder="Enter Mobile No." required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!---->
             </ul>
           </div>
+
           {% endfor %}
           <div class="container mt-2 d-flex ">
             <div class="column is-10">

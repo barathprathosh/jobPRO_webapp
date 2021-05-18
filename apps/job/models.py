@@ -76,3 +76,9 @@ class Application(models.Model):
 
     created_by = models.ForeignKey(User, related_name='applications', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Refer(models.Model):
+    # jobid = models.ForeignKey(Job, related_name='applications', on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=225,blank=True,null=True)
+    mobile = models.IntegerField(blank=True,null=True)
+    email = models.EmailField(max_length=225,blank=True,null=True)
