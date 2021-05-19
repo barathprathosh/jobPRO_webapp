@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Job, Application, Refer
+from .models import Job, Application
 
 # class AddJobForm(forms.ModelForm):
 #     class Meta:
@@ -10,9 +10,4 @@ from .models import Job, Application, Refer
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['description']
-
-class ApplicationForm(forms.ModelForm):
-    class Meta:
-        model = Refer
-        fields = ['fullname','mobile','email']
+        fields = ['job','description','task_id','created_by']

@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from .models import Job,Application,Userprofile,Refer
+from .models import Job,Application,Userprofile
 
 admin.site.register(Job)
 admin.site.register(Application)
 admin.site.register(Userprofile)
-admin.site.register(Refer)

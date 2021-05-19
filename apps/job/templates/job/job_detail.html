@@ -54,14 +54,14 @@
                     <div class="d-flex flex-column flex-lg-row justify-content-center">
                         <span class="ml-lg-5 mb-3 mb-lg-0 h5"><i class="fa fa-map-marker" style="font-size:20px;color:white"></i><span class="ml-3 text-white">{{ job.territory}}</span></span>
                         <span class="ml-lg-5 mb-3 mb-lg-0 h5"><i class="fa fa-user" style="font-size:20px;color:white"></i><span class="ml-3 text-white">Full Time</span></span>
-                        <span class="ml-lg-5 mb-3 mb-lg-0 h5"><i class="text-white" style="font-size:20px;color:white"><span>&#8377;</span> </i><span class="ml-3 text-white">25k</span></span>
+                        <span class="ml-lg-5 mb-3 mb-lg-0 h5"><i class="text-white" style="font-size:20px;color:white"><span>&#8377;</span> </i><span class="ml-3 text-white">{{ job.salary_type }}</span></span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- End banner Area -->
-
+<!-- 
     <section class="section-hero overlay inner-page bg-image"
     style="background-image: url('{% static 'images/hero_1.jpg' %}')" id="home-section">
     <div class="container">
@@ -84,7 +84,7 @@
                 </div>
         </div>
     </div>
-</section>
+</section> -->
 <section class="site-section">
     <div class="container">
         <div class="row align-items-center mb-5">
@@ -95,26 +95,25 @@
                             alt="Free Website Template By Free-Template.co">
                     </div>
                     <div>
-                        <h2>{{ "title" }}</h2>
+                        <h2>{{ job.title }}</h2>
                         <div>
-                            <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{ "company_name"
-                                }}</span>
-                            <span class="m-2"><span class="icon-room mr-2"></span>{{ "job_location" }}</span>
-                            <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary"> {{
-                                    "employment_status" }}
+                            <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{job.customer}}</span>
+                            <span class="m-2"><span class="icon-room mr-2"></span>{{ job.territory }}</span>
+                            <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary"> {{"Full Time" }}
                                 </span></span>
                         </div>
                     </div>
                 </div>
             </div>
+            <form action="{% url 'apply_for_job' job.id %}" method="POST">
             <div class="col-lg-4">
-                <div class="row">
-
-                    <div class="col-6">
-                        <a class="btn btn-block btn-primary btn-md">Apply Now</a>
+                <div class="row">                    
+                    <div class="col-6">{% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Apply</button>
                     </div>
                 </div>
             </div>
+        </form>
         </div>
         <div class="row">
             <div class="col-lg-8">
@@ -123,7 +122,7 @@
                     <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span
                             class="icon-align-left mr-3"></span>Job
                         Description</h3>
-                    <p>{{ "description" }}</p>
+                    <p>{{ job.description }}</p>
                 </div>
                 <div class="mb-5">
                     <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span
@@ -142,7 +141,7 @@
                     </h3>
                     <ul class="list-unstyled m-0 p-0">
                         <li class="d-flex align-items-start mb-2"><span
-                                class="icon-check_circle mr-2 text-muted"></span><span>{{ "experience" }}</span>
+                                class="icon-check_circle mr-2 text-muted"></span><span>{{ job.min_exp }} - {{job.max_exp}}</span>
                         </li>
 
                     </ul>
@@ -154,22 +153,24 @@
                 <div class="bg-light p-3 border rounded mb-4">
                     <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
                     <ul class="list-unstyled pl-3 mb-0">
-                        <li class="mb-2"><strong class="text-black">Published
-                                on:</strong> {{ "published_on" }} ago
+                        <li class="mb-2"><strong class="text-black">Company:</strong> {{ job.customer }} ago
                         </li>
-                        <li class="mb-2"><strong class="text-black">Vacancy:</strong> {{ "vacancy" }}</li>
+                        <li class="mb-2"><strong class="text-black">Vacancy:</strong> {{ job.vacanies }}</li>
                         <li class="mb-2"><strong class="text-black">Employment
-                                Status:</strong> {{ "employment_status" }}</li>
-                        <li class="mb-2"><strong class="text-black">Experience:</strong> {{ "experience" }}</li>
-                        <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ "job_location" }}</li>
-                        <li class="mb-2"><strong class="text-black">Salary:</strong> {{ "Salary" }}</li>
-                        <li class="mb-2"><strong class="text-black">Gender:</strong> {{ "gender" }}</li>
-                        <li class="mb-2"><strong class="text-black">Application
-                                Deadline:</strong> {{ "application_deadline" }}</li>
+                                Status:</strong> {{ "Full Time" }}</li>
+                        <li class="mb-2"><strong class="text-black">Experience:</strong> {{ job.min_exp }} - {{job.max_exp}}</li>
+                        <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ job.territory }}</li>
+                        <li class="mb-2"><strong class="text-black">Salary:</strong> {{ job.salary_type }}</li>
+                        <li class="mb-2"><strong class="text-black">Gender:</strong> {{ "Male" }}</li>
+                        <li class="mb-2"><strong class="text-black">Qualification</strong> {{ job.qualification_type }}</li>
+                        <li class="mb-2"><strong class="text-black">Transportation:</strong> {{ job.transportation }}</li>
+                        <li class="mb-2"><strong class="text-black">Food:</strong> {{ job.food }}</li>
+                        <li class="mb-2"><strong class="text-black">Accommodation:</strong> {{ job.accommodation }}</li>
+                        <li class="mb-2"><strong class="text-black">Contract Period:</strong> {{ job.contract_period_yr }}</li>
                     </ul>
                 </div>
 
-                <div class="bg-light p-3 border rounded">
+                <!-- <div class="bg-light p-3 border rounded">
                     <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
                     <div class="px-3">
                         <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
@@ -177,7 +178,7 @@
                         <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                         <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
