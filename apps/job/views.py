@@ -6,70 +6,59 @@ from .forms import ApplicationForm
 import logging
 import requests
 import json
+from django.utils.html import format_html
 logger = logging.getLogger(__name__)
 
-@login_required
+
 def job_detail(request,job_id):
     job = Job.objects.get(pk=job_id)
     if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            application = form.save(commit=False)
-            application.job = job
-            application.task_id = job.task_id
-            application.description = "test"
-            application.created_by = request.user
-            application.save()
-            return redirect('dashboard')
-    else:
-        form = ApplicationForm()
+        # form = ApplicationForm(request.POST)
+        # if form.is_valid():
+            # application = form.save(commit=False)
+            # application.job = job.title
+            # application.task_id = job.task_id
+            # application.description = "test"
+            # application.created_by = request.user
+            # application.save()
+        application_create = "https://myjobpro.teamproit.com/api/resource/Application"
+        requestHeaders = {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json',
+                'Authorization': 'token 7070d9b1afcdbe0:38d8e57acf7f19f'
+            }
+        data = json.dumps({"candidate_name":"TEST"})
+        response = requests.request("POST",application_create,headers=requestHeaders,data = data)
+        return redirect('dashboard')
+        # else:
+        #     form = ApplicationForm()
     return render(request, 'job/job_detail.html', {'job':job})
 
 # def search(request):
 #     return render(request,'job/search.html')
 
+@login_required
+def userprofile(request):
+    return render(request, 'job/dashboard.html',{'userprofile':request.user.userprofile})
 
 @login_required
 def dashboard(request):
     return render(request, 'job/dashboard.html',{'userprofile':request.user.userprofile})
 
-def apply_for_job(request,job_id):
-    job = Job.objects.get(pk=job_id)
-    if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            application = form.save(commit=False)
-            application.job = job.title
-            application.task_id = job.task_id
-            application.description = "test"
-            application.created_by = request.user
-            application.save()
-            application_create = "https://myjobpro.teamproit.com/api/resource/Application"
-            requestHeaders = {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Accept': 'application/json'
-                }
-            data = json.dumps({"candidate":"TEST"})
-            response = requests.request("POST",application_create,headers=requestHeaders,data = data)
-            return render(request, 'job/job_detail.html', {'job':job})
-            
-    else:
-        form = ApplicationForm()
-    return render(request, 'job/job_detail.html', {'job':job})
-
 def handleRefer(request):
     if request.method=="POST":
         # Get the post parameters
-        jobid=request.POST['job_id']
-        fullname=request.POST['full_name']
+        jobid=request.POST['jobid']
+        fullname=request.POST['fullname']
         email_id=request.POST['email']
         mobile=request.POST['mobile']
 
         # Sent API refer
-        refer_mail = "https://myjobpro.teamproit.com/api/method/myjobpro.custom.refer_api_call"
+        refer_mail = "https://myjobpro.teamproit.com/api/method/myjobpro.api.send_email"
         requestHeaders = {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Authorization': 'token 7070d9b1afcdbe0:38d8e57acf7f19f'
             }
         data = json.dumps({
             "jobid":jobid,
@@ -78,7 +67,7 @@ def handleRefer(request):
             "mobile":mobile
             })
         response = requests.request("GET",refer_mail,headers=requestHeaders,data = data)
-        messages.success(request, " Mail sent successfully ")
+        messages.success(request," Mail sent successfully ")
         return redirect('frontpage')
 
     else:

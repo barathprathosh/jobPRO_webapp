@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.contrib import messages
 # from blog.models import Post
 from apps.job.models import Job
+import html2text
 # from apps.userprofile.models import Userprofile
 
 import requests
@@ -26,7 +27,7 @@ def frontpage(request):
         dict_str = byte_str.decode("UTF-8")
         job_response = json.loads(dict_str)
         for j in job_response["data"]:
-            a = Job(title =j["subject"],specialization = j["specialization"],salary_type = j["salary_range"],description = j["job_description"],working_hours = j["work_hrs"],contract_period_yr = j["contract_period_year"],food = j["food"],accommodation = j["accommodation"],transportation = j["transportation"],customer = j["about_client"],qualification_type = j["qualification"],task_id = j["name"],territory = j["country"],status = j["status"],min_exp = j["min_exp"],max_exp = j["max_exp"],created_by = request.user)
+            a = Job(title =j["subject"],specialization = j["specialization"],salary_type = j["salary_range"],description = html2text.html2text(j["job_description"]),working_hours = j["work_hrs"],contract_period_yr = j["contract_period_year"],food = j["food"],accommodation = j["accommodation"],transportation = j["transportation"],customer = j["about_client"],qualification_type = j["qualification"],task_id = j["name"],territory = j["country"],status = j["status"],min_exp = j["min_exp"],max_exp = j["max_exp"],created_by = request.user)
             a.save()
             job_created = "https://myjobpro.teamproit.com/api/resource/Position/%s"%j["name"]
             requestHeaders = {
@@ -95,9 +96,9 @@ def handleSignUp(request):
         myuser.save()
         user_created = "https://myjobpro.teamproit.com/api/resource/User"
         requestHeaders = {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Accept': 'application/json'
-            }
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+        }
         data = json.dumps({
             "email":email,
             "first_name":fname,
@@ -105,7 +106,7 @@ def handleSignUp(request):
             "new_password":pass1
             })
         response = requests.request("POST",user_created,headers=requestHeaders,data = data)
-        messages.success(request, " Your Job Portal has been successfully created")
+        messages.success(request," Your Job Portal has been successfully created")
         return redirect('frontpage')
 
     else:

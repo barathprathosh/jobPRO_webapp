@@ -18,17 +18,17 @@ from django.urls import path, include
 from django.contrib.auth import views
 
 from apps.core.views import frontpage, handleSignUp, handeLogin, handelLogout, search_result_view
-from apps.job.views import job_detail,dashboard,apply_for_job, handleRefer
+from apps.job.views import job_detail,dashboard, handleRefer,userprofile
 
 urlpatterns = [
     path('',frontpage,name='frontpage'),
     path('admin/', admin.site.urls),
     path('dashboard/',dashboard, name='dashboard'),
     path('jobs/<int:job_id>/',job_detail, name = 'job_detail'),
-    path('apply_for_job/<int:job_id>',apply_for_job, name = 'apply_for_job'),
     path('result',search_result_view, name='search_result'),
     path('signup',handleSignUp, name='handleSignUp'),
     path('login', handeLogin, name='handleLogin'),
     path('logout',handelLogout, name='handleLogout'),
     path('refer',handleRefer, name='handleRefer'),
+    path('userprofile/',userprofile, name='userprofile'),
 ]
