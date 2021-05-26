@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.contrib.auth import views
 
 from apps.core.views import frontpage, handleSignUp, handeLogin, handelLogout, search_result_view
-from apps.job.views import job_detail,dashboard, handleRefer,userprofile
+from apps.job.views import job_detail,dashboard, handleRefer,create_userprofile
 
 urlpatterns = [
     path('',frontpage,name='frontpage'),
@@ -30,5 +30,5 @@ urlpatterns = [
     path('login', handeLogin, name='handleLogin'),
     path('logout',handelLogout, name='handleLogout'),
     path('refer',handleRefer, name='handleRefer'),
-    path('userprofile/',userprofile, name='userprofile'),
+    path('userprofile/',create_userprofile, name='userprofile'),
 ]

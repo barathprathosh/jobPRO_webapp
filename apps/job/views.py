@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Job
-from .forms import ApplicationForm
+from .models import Job, Userprofile
+from .forms import ApplicationForm, UserprofileForm
 import logging
 import requests
 import json
@@ -38,12 +38,34 @@ def job_detail(request,job_id):
 #     return render(request,'job/search.html')
 
 @login_required
-def userprofile(request):
-    return render(request, 'job/dashboard.html',{'userprofile':request.user.userprofile})
+def create_userprofile(request):
+    # profile = Userprofile(firstname="subash",lastname="p")
+    # profile.save()
+    # if request.method=="POST":
+    #     # Get the post parameters
+    #     username=request.POST['username']
+    #     email=request.POST['email']
+    #     firstname=request.POST['first_name']
+    #     lastname=request.POST['last_name']
+        
+    return redirect('dashboard')
+    # return render(request, 'job/dashboard.html',{'userprofile':request.user.userprofile})
 
 @login_required
 def dashboard(request):
-    return render(request, 'job/dashboard.html',{'userprofile':request.user.userprofile})
+    print(request)
+    profile = Userprofile(user=request.user,firstname="first_name",lastname="last_name")
+    profile.save()
+    if request.method=="POST":
+        # Get the post parameters
+        # username=request.POST['username']
+        # email=request.POST['email']
+        first_name=request.POST['input-first-name']
+        last_name=request.POST['input-last-name']
+        profile = Userprofile(user=request.user,firstname=first_name,lastname=last_name)
+        profile.save()
+    # return redirect('dashboard')
+    return render(request, 'job/dashboard.html')
 
 def handleRefer(request):
     if request.method=="POST":

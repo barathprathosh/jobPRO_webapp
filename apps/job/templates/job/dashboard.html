@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load include_by_ajax_tags %}
 {% load static %}
 
 {% block content %}
@@ -53,10 +54,10 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Hello Jesse</h1>
+                        <h1 class="display-2 text-white">Hello {{request.user}}</h1>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made
                             with your work and manage your projects or assigned tasks</p>
-                        <a href="#!" class="btn btn-info">Edit profile</a>
+                        <a href="" class="btn btn-info">Edit profile</a>
                     </div>
                 </div>
             </div>
@@ -89,22 +90,22 @@
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                         <div>
                                             <span class="heading">22</span>
-                                            <span class="description">Friends</span>
+                                            <span class="description">Jobs</span>
                                         </div>
                                         <div>
                                             <span class="heading">10</span>
-                                            <span class="description">Photos</span>
+                                            <span class="description">Applied Jobs</span>
                                         </div>
                                         <div>
                                             <span class="heading">89</span>
-                                            <span class="description">Comments</span>
+                                            <span class="description">Message</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
+                                    {{request.user}}<span class="font-weight-light">, 23</span>
                                 </h3>
                                 <div class="h5 font-weight-300">
                                     <i class="ni location_pin mr-2"></i>Bucharest, Romania
@@ -123,7 +124,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-xl-8 order-xl-1">
                     <div class="card bg-secondary shadow">
                         <div class="card-header bg-white border-0">
@@ -132,7 +132,7 @@
                                     <h3 class="mb-0">My account</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                                    <a method="post" type="button" href="" class="btn btn-sm btn-primary">Update</a>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                                                     <div class="form-group focused">
                                                         <label class="form-control-label"
                                                             for="input-username">Username</label>
-                                                        <input type="text" id="input-username"
+                                                        <input name = "username" type="text" id="input-username"
                                                             class="form-control form-control-alternative"
                                                             placeholder="Username" value={{request.user}}>
                                                     </div>
@@ -181,9 +181,9 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-email">Email
                                                             address</label>
-                                                        <input type="email" id="input-email"
+                                                        <input name="email" type="email" id="input-email"
                                                             class="form-control form-control-alternative"
-                                                            placeholder="jesse@example.com">
+                                                            placeholder="jesse@example.com" value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,18 +192,18 @@
                                                     <div class="form-group focused">
                                                         <label class="form-control-label" for="input-first-name">First
                                                             name</label>
-                                                        <input type="text" id="input-first-name"
+                                                        <input name="first_name" type="text" id="input-first-name"
                                                             class="form-control form-control-alternative"
-                                                            placeholder="First name" value="Lucky">
+                                                            placeholder="First name" value="subash">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group focused">
                                                         <label class="form-control-label" for="input-last-name">Last
                                                             name</label>
-                                                        <input type="text" id="input-last-name"
+                                                        <input name = "last_name" type="text" id="input-last-name"
                                                             class="form-control form-control-alternative"
-                                                            placeholder="Last name" value="Jesse">
+                                                            placeholder="Last name" value="P">
                                                     </div>
                                                 </div>
                                             </div>
@@ -2697,4 +2697,11 @@
 </body>
 
 </html>
+{% endblock %}
+{% block js %}
+    <script>
+    $(document).on('include_by_ajax_all_loaded', function() {
+        console.log('Now all placeholders are loaded and replaced with content');
+    })
+    </script>
 {% endblock %}

@@ -1,11 +1,11 @@
 from django import forms
 
-from .models import Job, Application
+from .models import Job, Application, Userprofile
 
-# class AddJobForm(forms.ModelForm):
-#     class Meta:
-#         model = Job
-#         fields = ['title','short_discription','long_discription']
+class UserprofileForm(forms.ModelForm):
+    class Meta:
+        model = Userprofile
+        fields = ['user','firstname','lastname']
 
 class ApplicationForm(forms.ModelForm):
     class Meta:
