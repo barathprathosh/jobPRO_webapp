@@ -54,16 +54,16 @@ def create_userprofile(request):
 @login_required
 def dashboard(request):
     print(request)
-    profile = Userprofile(user=request.user,firstname="first_name",lastname="last_name")
-    profile.save()
-    if request.method=="POST":
+    # profile = Userprofile(user=request.user,firstname="first_name",lastname="last_name")
+    # profile.save()
+    # if request.method=="POST":
         # Get the post parameters
         # username=request.POST['username']
         # email=request.POST['email']
-        first_name=request.POST['input-first-name']
-        last_name=request.POST['input-last-name']
-        profile = Userprofile(user=request.user,firstname=first_name,lastname=last_name)
-        profile.save()
+        # first_name=request.POST['input-first-name']
+        # last_name=request.POST['input-last-name']
+        # profile = Userprofile(user=request.user,firstname=first_name,lastname=last_name)
+        # profile.save()
     # return redirect('dashboard')
     return render(request, 'job/dashboard.html')
 
