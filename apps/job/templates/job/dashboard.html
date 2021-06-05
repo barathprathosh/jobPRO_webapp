@@ -392,7 +392,7 @@
                             </div>
                             <!--tab-3-->
                             <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
-                                <div class="card-body">
+                                <div id="exp-1" class="card-body">
                                     <form action="" method="POST">
                                         {% csrf_token %}
                                         <h6 class="heading-small text-muted mb-4">Education Details</h6>
@@ -468,11 +468,176 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="submit-row">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                            <style>
+                                                #edu-2 {
+                                                    display: none;
+                                                }
+                                            </style>
+                                            
+                                        <script>
+                                            function education() {
+                                                var x = document.getElementById("edu-2");
+                                                if (x.style.display === "block") {
+                                                    x.style.display = "none";
+                                                } 
+                                                else {
+                                                    x.style.display = "block";
+                                                }
+                                                }
+                                        </script>
+                                        <div id="edu-2" class="pl-lg-4">
+                                            <hr class="my-4">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-school-university">School / University</label>
+                                                        <input type="text" id="input-school-university"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-qualification">Qualification</label>
+                                                        <input type="text" id="input-qualification"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-specialization">Specialization</label>
+                                                        <input type="text" id="input-specialization"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-level">Level</label>
+                                                        <input type="text" id="input-level"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-year-of-passing">Year of Passing</label>
+                                                        <input type="number" id="input-year-of-passing"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-course-type">Course
+                                                            Type</label>
+                                                        <input type="text" id="input-course-type"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-class-percentage">Class Percentage</label>
+                                                        <input type="text" id="input-class-percentage"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="my-4">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-school-university">School / University</label>
+                                                        <input type="text" id="input-school-university"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-qualification">Qualification</label>
+                                                        <input type="text" id="input-qualification"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-specialization">Specialization</label>
+                                                        <input type="text" id="input-specialization"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-level">Level</label>
+                                                        <input type="text" id="input-level"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-year-of-passing">Year of Passing</label>
+                                                        <input type="number" id="input-year-of-passing"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-course-type">Course
+                                                            Type</label>
+                                                        <input type="text" id="input-course-type"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-class-percentage">Class Percentage</label>
+                                                        <input type="text" id="input-class-percentage"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="submit-row">
+                                            <button onclick="education()" type="button" class="btn btn-primary">Add</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
                                     </form>
+                                    
                                 </div>
                             </div>
                             <!--tab-4-->
@@ -480,7 +645,7 @@
                                 <div class="card-body">
                                     <form action="" method="POST">
                                         {% csrf_token %}
-                                        <h6 class="heading-small text-muted mb-4">Employment Details</h6>
+                                        <h6 class="heading-small text-muted mb-4">Employment Details 1</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
                                                 <div class="col-lg-6">
@@ -561,9 +726,191 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="submit-row">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <style>
+                                            #exp-2 {
+                                                display: none;
+                                            }
+                                        </style>
+                                        
+                                    <script>
+                                        function myFunction() {
+                                            var x = document.getElementById("exp-2");
+                                            if (x.style.display === "block") {
+                                                x.style.display = "none";
+                                            } 
+                                            else {
+                                                x.style.display = "block";
+                                            }
+                                            }
+                                    </script>
+                                        <div id="exp-2" class="pl-lg-4">
+                                            <hr class="my-4">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-organization">Organization</label>
+                                                        <input type="text" id="input-organization"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-role">Role</label>
+                                                        <input type="text" id="input-role"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label" for="input-work-summary">Work
+                                                            Summary</label>
+                                                        <input type="text" id="input-work-summary"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-currently-working">Currently Working</label>
+                                                        <input type="text" id="input-currently-working"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label" for="input-from-date">From
+                                                            Date</label>
+                                                        <input type="date" id="input-from-date"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-to-date">To
+                                                            Date</label>
+                                                        <input type="date" id="input-to-date"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-reason-for-leaving">Reason for leaving</label>
+                                                        <input type="text" id="input-reason-for-leaving"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-notice-period">Notice Period</label>
+                                                        <input type="number" id="input-notice-period"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="my-4">
+                                            <div class="row">
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-organization">Organization</label>
+                                                        <input type="text" id="input-organization"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-role">Role</label>
+                                                        <input type="text" id="input-role"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label" for="input-work-summary">Work
+                                                            Summary</label>
+                                                        <input type="text" id="input-work-summary"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-currently-working">Currently Working</label>
+                                                        <input type="text" id="input-currently-working"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label" for="input-from-date">From
+                                                            Date</label>
+                                                        <input type="date" id="input-from-date"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-to-date">To
+                                                            Date</label>
+                                                        <input type="date" id="input-to-date"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group focused">
+                                                        <label class="form-control-label"
+                                                            for="input-reason-for-leaving">Reason for leaving</label>
+                                                        <input type="text" id="input-reason-for-leaving"
+                                                            class="form-control form-control-alternative" placeholder=""
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label"
+                                                            for="input-notice-period">Notice Period</label>
+                                                        <input type="number" id="input-notice-period"
+                                                            class="form-control form-control-alternative"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="submit-row">
+                                            <button onclick="myFunction()" type="button" class="btn btn-primary">Add</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
                                 </div>
